@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>动态加载演示（本地夹具）</title>
+</head>
+<body>
+    <h1>商品列表（由 JavaScript 异步填充）</h1>
+    <!-- 注意：服务器返回的原始 HTML 里这个 ul 是空的，内容靠脚本运行后才出现 -->
+    <ul id="item-list">
+        <!-- 预期被 JS 注入：
+        <li class="item">机械键盘 · ¥299</li>
+        <li class="item">无线鼠标 · ¥89</li>
+        <li class="item">显示器支架 · ¥159</li>
+        -->
+    </ul>
+
+    <script>
+        // 模拟一次异步请求：500ms 后才把数据塞进 DOM
+        setTimeout(function () {
+            var data = [
+                { name: "机械键盘", price: 299 },
+                { name: "无线鼠标", price: 89 },
+                { name: "显示器支架", price: 159 }
+            ];
+            var ul = document.getElementById("item-list");
+            data.forEach(function (d) {
+                var li = document.createElement("li");
+                li.className = "item";
+                li.textContent = d.name + " · ¥" + d.price;
+                ul.appendChild(li);
+            });
+            document.title = "动态加载完成，共 " + data.length + " 件";
+        }, 500);
+    </script>
+</body>
+</html>

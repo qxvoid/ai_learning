@@ -1,0 +1,17 @@
+# robots.txt 本地夹具（教学用，模拟某公开内容站）
+# 规范：RFC 9309 https://www.rfc-editor.org/rfc/rfc9309
+
+User-agent: *
+Disallow: /login
+Disallow: /admin/
+Disallow: /private/
+Disallow: /checkout/
+Allow: /
+
+User-agent: BadBot
+Disallow: /
+
+# 友好站点建议的抓取间隔（非强制，但应遵守）
+Crawl-delay: 5
+
+Sitemap: https://example.com/sitemap.xml
